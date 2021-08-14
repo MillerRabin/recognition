@@ -1,13 +1,14 @@
 #include <opencv2/opencv.hpp>
-#include <http/http.h>
-
+#include <ptz/ptz.h>
+#include <credentials.h>
 
 using namespace cv;
 
+
 int main() {		
-	HttpRequest req;
-	HttpResponse res = req.request({"https://raintech.su"});
-    	
+	PTZ ptz(CAM_IP);
+	ptz.login(CAM_LOGIN, CAM_PASS);
+	
 	/*VideoCapture cap("rtsp://admin:ifyouwanttohave@192.168.1.32:554/h264Preview_01_main");
 	
 	if (!cap.isOpened())

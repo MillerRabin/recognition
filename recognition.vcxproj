@@ -19,11 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\http.cpp" />
+    <ClCompile Include="src\http\http.cpp" />
+    <ClCompile Include="src\ptz\ptz.cpp" />
     <ClCompile Include="src\recognitionWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\http\http.h" />
+    <ClInclude Include="src\credentials.h" />
+    <ClInclude Include="src\http\http.h" />
+    <ClInclude Include="src\ptz\ptz.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -79,11 +82,11 @@
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)include;$(SolutionDir)/include;C:\projects\deps\opencv\install\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src;$(SolutionDir)include;$(SolutionDir)/include;C:\projects\deps\opencv\install\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\projects\deps\opencv\install\x64\vc16\lib;$(SolutionDir)lib;$(SolutionDir)/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)include;$(SolutionDir)include;C:\projects\deps\opencv\install\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src;$(SolutionDir)include;$(SolutionDir)include;C:\projects\deps\opencv\install\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\projects\deps\opencv\install\x64\vc16\lib;$(SolutionDir)lib;$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

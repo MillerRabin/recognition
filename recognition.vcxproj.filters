@@ -18,12 +18,21 @@
     <ClCompile Include="src\recognitionWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\http.cpp">
+    <ClCompile Include="src\http\http.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ptz\ptz.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\http\http.h">
+    <ClInclude Include="src\http\http.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ptz\ptz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\credentials.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
