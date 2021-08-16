@@ -7,7 +7,9 @@ using namespace cv;
 
 int main() {		
 	PTZ ptz(CAM_IP);
-	ptz.login(CAM_LOGIN, CAM_PASS);
+	Token token = ptz.login(CAM_LOGIN, CAM_PASS);
+	ptz.control(token, "Up");
+	ptz.control(token, "Stop");
 	
 	/*VideoCapture cap("rtsp://admin:ifyouwanttohave@192.168.1.32:554/h264Preview_01_main");
 	

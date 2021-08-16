@@ -2,7 +2,7 @@
 
 //------------HttpRequestParams-----------------
 
-HttpRequestParams::HttpRequestParams(const std::string url, const std::string method, HeadersMap headers, BodyMap body) :
+HttpRequestParams::HttpRequestParams(const std::string url, const std::string method, Headers headers, std::string body) :
 	url(url),
 	method(method),
 	headers(headers),
@@ -34,14 +34,29 @@ HttpRequest::~HttpRequest() {
 
 HttpResponse HttpRequest::request(HttpRequestParams params) {
 	CURL* curl = curl_easy_init();
+		
+	struct curl_slist* headers = NULL;
+	for (auto& item : params.headers) {
+		headers = curl_slist_append(headers, item.c_str());
+	}
+	
 	if (!curl)
 		return { CURLE_FAILED_INIT };
 
 	std::string content;
-	curl_easy_setopt(curl, CURLOPT_URL, "https://raintech.su/");
+	
+	curl_easy_setopt(curl, CURLOPT_URL, params.url.c_str());
+	
+	curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+	if (params.body != "") {
+		curl_easy_setopt(curl, CURLOPT_POSTFIELDS, params.body.c_str());
+		curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, -1L);
+	}
+
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, HttpRequest::write_data);
-	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &content);
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &content);	
 	CURLcode res = curl_easy_perform(curl);	
 	curl_easy_cleanup(curl);
 	return { res, content };
 }
+

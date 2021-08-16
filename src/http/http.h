@@ -4,26 +4,25 @@
 #define CURL_STATICLIB
 
 #include <string>
-#include <map>
+#include <vector>
 #include <curl/curl.h>
+#include <cjson/cJSON.h>
 
-typedef std::map<std::string, std::string> BodyMap;
-typedef std::map<std::string, std::string> HeadersMap;
-
+typedef std::vector<std::string> Headers;
 
 class HttpRequestParams {
 public: 
 	const std::string url;
 	const std::string method;
-	HeadersMap headers;
-	BodyMap body;
-	HttpRequestParams(const std::string url, const std::string method = "GET", HeadersMap headers = {}, BodyMap body = {});
+	Headers headers;
+	std::string body;
+	HttpRequestParams(const std::string url, const std::string method = "GET", Headers headers = {}, std::string body = "");
 };
 
 class HttpResponse {
 public:
 	CURLcode code;
-	std::string content;
+	std::string text;
 };
 
 
